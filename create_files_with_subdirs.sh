@@ -1,5 +1,10 @@
 # Author: Joshua Summers
 # Lab1 Assignment
+# This script will create a directory based on the string
+# format for the current date and time (concatenated together)
+# This folder will contain 10 subfolders and in each subfolder
+# it will create a file that has a unique programming language
+# listed as a string
 
 # Output the string to the stdout using the 'echo' command
 echo "Lab1 Program Start"
