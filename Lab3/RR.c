@@ -80,12 +80,35 @@ void calculateTurnaroundTime(Process proc[], int n) {
         proc[i].burst_time + proc[i].waiting_time;
 }
 
+// Calculate average wait times and turnaround times
+void calculateAverageTimes(Process proc[], int n) {
+    // Variables
+    double waitSum = 0.0;
+    double turnaroundSum = 0.0;
+
+
+    // Iterate through the processes and do the summations
+    for (int i = 0; i < n; i++) {
+        waitSum += proc[i].waiting_time;
+        turnaroundSum += proc[i].turnaround_time;
+    }
+    // Calculate the averages
+    waitSum = waitSum / n;
+    turnaroundSum = turnaroundSum / n;
+
+    // Output the information
+    printf("The average wait time for this algorithm is: %.2f\n", waitSum);
+    printf("The average turnaround time for this algorithm is: %.2f\n", turnaroundSum);
+}
+
+// This is the function that runs the round robin processes
 void roundRobin(Process proc[], int n, int quantum) {
     initializeRemainingTime(proc, n);
     calculateWaitingTimeAndExecutionOrder(proc, n, quantum);
     calculateTurnaroundTime(proc, n);
 }
 
+// This is the function to output the process details
 void printProcesses(Process proc[], int n) {
     printf("Process ID\tArrival Time\tBurst Time\tWaiting Time\tTurnaround Time\n");
     for (int i = 0; i < n; i++) {
@@ -95,6 +118,7 @@ void printProcesses(Process proc[], int n) {
     }
 }
 
+// This is the main process
 int main() {
     Process proc[] = {{1, 0, 24}, {2, 0, 3}, {3, 0, 3}};
     //Process proc[] = {{1, 0, 24}, {2, 0, 3}, {3, 0, 3}, {4, 0, 7}, {5, 0, 15}};
@@ -103,6 +127,7 @@ int main() {
  
     roundRobin(proc, n, quantum);
     printProcesses(proc, n);
+    calculateAverageTimes(proc, n);
 
     return 0;
 }

@@ -90,6 +90,29 @@ void srtf(Process proc[]) {
         prev = index; // Assign previous index
         current_time++; // Update the clock tick
     }
+    // Calculate average times
+
+}
+
+// Calculate average wait times and turnaround times
+void calculateAverageTimes(Process proc[]) {
+    // Variables
+    double waitSum = 0.0;
+    double turnaroundSum = 0.0;
+
+
+    // Iterate through the processes and do the summations
+    for (int i = 0; i < n; i++) {
+        waitSum += proc[i].waiting_time;
+        turnaroundSum += proc[i].turnaround_time;
+    }
+    // Calculate the averages
+    waitSum = waitSum / n;
+    turnaroundSum = turnaroundSum / n;
+
+    // Output the information
+    printf("The average wait time for this algorithm is: %.2f\n", waitSum);
+    printf("The average turnaround time for this algorithm is: %.2f\n", turnaroundSum);
 }
 
 // Function to print the processes and their details
@@ -102,6 +125,7 @@ void printProcesses(Process proc[]) {
     }
 }
 
+// This is the main program
 int main() {
     // Initialize processes with their IDs, arrival times, and burst times
     Process proc[] = {{1, 0, 8}, {2, 1, 4}, {3, 2, 9}, {4, 3, 5}};
@@ -110,6 +134,7 @@ int main() {
 
     srtf(proc);
     printProcesses(proc);
+    calculateAverageTimes(proc);
 
     return 0;
 }
